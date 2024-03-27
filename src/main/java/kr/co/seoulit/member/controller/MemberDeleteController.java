@@ -20,7 +20,7 @@ public class MemberDeleteController implements Controller {
 	 	try {		
 			MemberServiceFacade sf=MemberServiceFacadeImpl.getInstance();
 			sf.unenrollmentmember(request.getParameter("id"));
-	 		 mav=new ModelAndView("redirect:"+contextPath+"/menu.html",map);
+	 		 mav=new ModelAndView("redirect:"+contextPath+"/member/list.do",map);
 	 		 map.put("errorCode", 0);
 	 		 map.put("errorMsg", "success");
 		} catch (Exception e) {

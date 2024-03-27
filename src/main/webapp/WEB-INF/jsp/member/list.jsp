@@ -10,25 +10,34 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
- <script>
- window.onload=function(){}
- </script>
-</head>
-<body>
-<a href="<%=contextPath%>/menu.html">메뉴</a><br/>
-<form action="<%=contextPath%>/member/updateForm.do">
-	<%
-	List<MemberBean> list = (List<MemberBean>) request.getAttribute("memberlist");
-	for (MemberBean bean : list) {
-		String id = bean.getId();
-		out.print("<input type=radio name='id' value="+id+">");
-		out.print("<a href='" + contextPath + "/member/detail.do?id=" + id + "' onclick=f(this)>");
-		out.print(id);
-		out.print("</a><br/>");
+<link rel="stylesheet" href="">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<style>
+.listContainer{
+		margin: 10px 100px 10px 10px;
+		width: 200px;
 	}
-	%>
-<button>수정</button>
-<button onclick="this.form.action='<%=contextPath%>/member/remove.do'">삭제</button>
-</form>
+</style>
+</head>
+
+<body>
+	<div class="listContainer">
+	<button type="button" class="btn btn-outline-primary" onclick="location.href='<%=contextPath%>/menu.html'">Menu</button>
+	<br />
+	<form action="<%=contextPath%>/member/updateForm.do">
+		<%
+		List<MemberBean> list = (List<MemberBean>) request.getAttribute("memberlist");
+		for (MemberBean bean : list) {
+			String id = bean.getId();
+			out.print("<input type=radio name='id' value=" + id + ">");
+			out.print("<a href='" + contextPath + "/member/detail.do?id=" + id + "' onclick=f(this)>");
+			out.print(id);
+			out.print("</a><br/>");
+		}
+		%>
+		<button type="submit" class="btn btn-primary btn-sm" >수정</button>
+		<button type="submit" class="btn btn-primary btn-sm" onclick="this.form.action='<%=contextPath%>/member/remove.do'">삭제</button>
+	</form>
+	</div>
 </body>
 </html>
