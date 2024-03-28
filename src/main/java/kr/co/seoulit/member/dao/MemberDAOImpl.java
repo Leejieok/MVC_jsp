@@ -170,4 +170,78 @@ public class MemberDAOImpl implements MemberDAO{
 			}catch(Exception e){}		
 		}		
 	}
+	public int selectRowCount() throws DataAccessException {
+		// TODO Auto-generated method stub
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs=null;
+		try {
+			StringBuffer query = new StringBuffer();
+			query.append("select count(*) from member");
+
+			DataSource dataSource=ServiceLocator.getInstance().getDataSource("jdbc/myoracle");
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(query.toString());
+			rs = pstmt.executeQuery();
+			rs.next();
+			return rs.getInt(1);
+		} catch(Exception sqle) {
+			throw new DataAccessException(sqle.getMessage());			
+		} finally {
+			try{
+				if(rs!=null){rs.close(); rs=null; }
+				if(pstmt!=null){pstmt.close(); pstmt=null; }
+				if(con!=null){con.close(); con=null; }
+			}catch(Exception e){}		
+		}
+	}
+
+	public List<MemberBean> selectMemberList(int sr, int er) {
+		List<MemberBean> v = new ArrayList<MemberBean>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			StringBuffer query = new StringBuffer();
+			query.append("select * from ");
+			query.append("(select rownum as rn, id, pw, addr, tel from ");
+			query.append("(select * from member order by id)) t ");
+			query.append("where t.rn between ? and ?");
+
+			DataSource dataSource = ServiceLocator.getInstance().getDataSource("jdbc/myoracle");
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(query.toString());
+			pstmt.setInt(1, sr);
+			pstmt.setInt(2, er);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				MemberBean member = new MemberBean();
+				member.setId(rs.getString("id"));
+				member.setPw(rs.getString("pw"));
+				member.setAddr(rs.getString("addr"));
+				member.setTel(rs.getString("tel"));
+				v.add(member);
+			}
+			return v;
+		} catch (Exception sqle) {
+			throw new DataAccessException(sqle.getMessage());
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+					rs = null;
+				}
+				if (pstmt != null) {
+					pstmt.close();
+					pstmt = null;
+				}
+				if (con != null) {
+					con.close();
+					con = null;
+				}
+			} catch (Exception e) {
+			}
+		}
+	}
 }

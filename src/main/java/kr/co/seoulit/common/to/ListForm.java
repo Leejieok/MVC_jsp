@@ -2,13 +2,13 @@ package kr.co.seoulit.common.to;
 import java.util.List;
 
 public class ListForm {
-		private int				endrow=1;		//보여지는 화면의 끝줄
-		private int 			pagenum=1;		//현재페이지번호
-		private int 			rowsize=2;		//화면에 보여질 줄갯수
-		private int 			endpage=1;		//끝페이지
-		private int				pagesize=2;		//화면에 보여질 페이지갯수
-		private int 			pagecount=1;	//총페이지갯수
-		private int 			dbcount=1;		//총레코드갯수	
+		private int				endrow=1;		
+		private int 			pagenum=1;		
+		private int 			rowsize=2;		
+		private int 			endpage=1;		
+		private int				pagesize=5;		
+		private int 			pagecount=1;	
+		private int 			dbcount=1;			
 		
 		private boolean previous;
 		public void setRowsize(int rowsize) {
@@ -75,6 +75,7 @@ public class ListForm {
 		}
 		public void setList(List<?> list){
 			this.list=list;
+			
 		}
 		public List<?> getList(){
 			return list;

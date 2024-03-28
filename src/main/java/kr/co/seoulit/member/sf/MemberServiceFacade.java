@@ -11,5 +11,7 @@ public interface MemberServiceFacade {
 	public MemberBean login(String id, String pw);
 	public void changeMember(MemberBean member);
 	public void unenrollmentmember(String id);
+	public int getDbcount();
+	public List<MemberBean> getMemberList(int sr,int er);
 }
 

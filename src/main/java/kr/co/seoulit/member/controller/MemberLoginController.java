@@ -24,7 +24,6 @@ public class MemberLoginController implements Controller {
 			MemberBean bean=sf.login(request.getParameter("id"),request.getParameter("pw"));
 			
 			 json.put("msg",bean==null?"로그인실패 아이디와 비밀번호를 확인해주세요":"로그인성공");
-			 System.out.println(bean);
 	 		 json.put("errorCode", 0);
 	 		 json.put("errorMsg", "success");
 		} catch (Exception e) {

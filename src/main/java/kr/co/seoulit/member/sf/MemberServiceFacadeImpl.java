@@ -49,4 +49,14 @@ public class MemberServiceFacadeImpl implements MemberServiceFacade{
 		// TODO Auto-generated method stub
 		MemberDAOImpl.getInstance().deleteMember(id);
 	}
+	@Override
+	public int getDbcount() {
+		// TODO Auto-generated method stub
+		return MemberDAOImpl.getInstance().selectRowCount();
+	}
+	@Override
+	public List<MemberBean> getMemberList(int sr, int er) {
+		// TODO Auto-generated method stub
+		return MemberDAOImpl.getInstance().selectMemberList(sr,er);
+	}
 }

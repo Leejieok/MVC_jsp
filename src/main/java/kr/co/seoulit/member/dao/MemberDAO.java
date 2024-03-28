@@ -10,4 +10,6 @@ public interface MemberDAO {
 	public void insertMember(MemberBean member) throws DataAccessException ;
 	public void updateMember(MemberBean member)throws DataAccessException ;
 	public void deleteMember(String id)throws DataAccessException ;
+	public int selectRowCount() throws DataAccessException ;
+	public List<MemberBean> selectMemberList(int sr,int er) throws DataAccessException ;
 }

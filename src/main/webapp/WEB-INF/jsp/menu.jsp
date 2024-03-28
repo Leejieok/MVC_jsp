@@ -14,7 +14,7 @@ MemberBean bean=(MemberBean)request.getAttribute("member");
 <style>
 	.divContainer{
 		margin: 10px 100px 10px 10px;
-		width: 200px;
+		width: 250px;
 	}
 	.titleContainer{
 		margin-top: 20px;
@@ -56,12 +56,16 @@ MemberBean bean=(MemberBean)request.getAttribute("member");
 		<div class="innerdivContainer">
 			<div class="list-group">
 				<a href="#" class="list-group-item list-group-item-action active"
-					aria-current="true"> click menu </a> <a href="#"
-					class="list-group-item list-group-item-action"
+					aria-current="true"> click menu </a> 
+					<a href="#" class="list-group-item list-group-item-action"
 					onclick="location.href='<%=request.getContextPath()%>/member/list.do'">회원리스트</a>
 				<a href="#" class="list-group-item list-group-item-action"
 					onclick="f()">회원리스트(AJAX)</a>
 				<div id="listContainer"></div>
+				<a href="#" class="list-group-item list-group-item-action" 
+					onclick="location.href='<%=request.getContextPath()%>/member/list-page1.do?pn=1' ">회원리스트(페이지달기)</a>
+				<a href="#" class="list-group-item list-group-item-action" 
+					onclick="location.href='<%=request.getContextPath()%>/member/list-page2.do?pn=1' ">회원리스트(bootstrap)</a>
 				<a href="#" class="list-group-item list-group-item-action"
 					onclick="location.href='<%=request.getContextPath()%>/addForm.html'">
 					회원가입</a> <a href="#" class="list-group-item list-group-item-action"
